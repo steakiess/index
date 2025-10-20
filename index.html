@@ -246,6 +246,8 @@
             border: 3px solid #ffd89b;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            cursor: pointer;
+            position: relative;
         }
 
         .timeline-content:hover {
@@ -287,6 +289,94 @@
             50% {
                 transform: translate(-50%, -50%) scale(1.3);
             }
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 107, 157, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 20px;
+            border: 5px solid white;
+            box-shadow: 0 10px 50px rgba(255, 107, 157, 0.5);
+        }
+
+        .modal-caption {
+            text-align: center;
+            color: white;
+            font-size: 1.8em;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-weight: bold;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-close:hover {
+            color: #ff6b9d;
+            transform: rotate(90deg) scale(1.2);
         }
 
         .photo-gallery {
@@ -466,6 +556,15 @@
             .final-message h1 {
                 font-size: 2.5em;
             }
+
+            .modal-close {
+                top: -30px;
+                font-size: 35px;
+            }
+
+            .modal-caption {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -487,33 +586,40 @@
         <div class="scene">
             <div class="memory-box" id="box2">
                 <h2>Our Journey Together 🛤️💕</h2>
+                <p style="text-align: center; color: #ff6b9d; margin-bottom: 30px; font-size: 1.2em; font-weight: bold;">
+                    Click on each moment to see the memory! 📸✨
+                </p>
                 <div class="timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-image="images/1.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>The First Time We Met ✨</h3>
                             <p>I knew there was something special about you from the very first moment. Your energy was magnetic! 💫</p>
+                            <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-image="images/2.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>Our First Adventure 🌟</h3>
                             <p>Every moment with you is an adventure, but that first one showed me how amazing our journey would be! 🎈</p>
+                            <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-image="images/3.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>When I Realized 💖</h3>
                             <p>The moment I knew you were the one - when being with you felt like coming home. 🏡</p>
+                            <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-image="images/4.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>Now & Forever 🌈</h3>
                             <p>Every day with you is a gift, and I can't wait to create infinite more memories together! 🎁</p>
+                            <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
                 </div>
@@ -556,8 +662,18 @@
             </div>
         </div>
     </div>
-?
+
+    <!-- Modal for showing images -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img id="modalImage" src="" alt="Memory">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
     <script>
+        // Create stars background
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 150; i++) {
             const star = document.createElement('div');
@@ -568,6 +684,7 @@
             starsContainer.appendChild(star);
         }
 
+        // Start button click
         document.getElementById('startBtn').addEventListener('click', function() {
             document.getElementById('introScreen').classList.add('fade-out');
             setTimeout(() => {
@@ -577,6 +694,7 @@
             }, 1000);
         });
 
+        // Floating hearts animation
         function startFloatingHearts() {
             const container = document.getElementById('heartsContainer');
             const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '🌸', '⭐', '✨', '🌺'];
@@ -593,6 +711,7 @@
             }, 800);
         }
 
+        // Reveal boxes on scroll
         function revealBoxes() {
             const boxes = document.querySelectorAll('.memory-box');
             const timelineItems = document.querySelectorAll('.timeline-item');
@@ -613,21 +732,23 @@
             observer.observe(finalMessage);
         }
 
+        // Firework button
         document.getElementById('fireworkBtn').addEventListener('click', function(e) {
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     createFirework();
-                }, i * 80);
+                }, i * 50);
             }
             createParticles(this);
         });
 
+        // Create firework effect
         function createFirework() {
             const colors = ['#ff6b9d', '#ffd89b', '#c44569', '#ffd700', '#ff1493', '#ffb6c1'];
             const x = Math.random() * window.innerWidth;
             const y = Math.random() * window.innerHeight * 0.7;
 
-            for (let i = 0; i < 35; i++) {
+            for (let i = 0; i < 10; i++) {
                 const firework = document.createElement('div');
                 firework.className = 'firework';
                 firework.style.background = colors[Math.floor(Math.random() * colors.length)];
@@ -643,6 +764,7 @@
             }
         }
 
+        // Animate firework
         function animateFirework(element, angle, velocity) {
             let x = 0, y = 0;
             let opacity = 1;
@@ -665,6 +787,7 @@
             animate();
         }
 
+        // Create particle effect
         function createParticles(button) {
             const rect = button.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
@@ -689,6 +812,7 @@
             }
         }
 
+        // Photo item click effect
         document.querySelectorAll('.photo-item').forEach(photo => {
             photo.addEventListener('click', function() {
                 this.style.transform = 'scale(1.5) rotate(360deg)';
@@ -697,6 +821,44 @@
                 }, 700);
                 createParticles(this);
             });
+        });
+
+        // Timeline item click to show image modal
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const modalClose = document.getElementById('modalClose');
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imageSrc = this.getAttribute('data-image');
+                const caption = this.querySelector('h3').textContent;
+                
+                modalImage.src = imageSrc;
+                modalCaption.textContent = caption;
+                modal.classList.add('active');
+                
+                // Add particles effect
+                createParticles(this);
+            });
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
         });
     </script>
 </body>
