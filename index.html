@@ -39,10 +39,13 @@
         }
 
         @keyframes twinkle {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.5;
                 transform: scale(1);
             }
+
             50% {
                 opacity: 1;
                 transform: scale(1.3);
@@ -105,9 +108,11 @@
                 opacity: 0;
                 transform: scale(0.3) rotate(-10deg);
             }
+
             50% {
                 transform: scale(1.1) rotate(5deg);
             }
+
             100% {
                 opacity: 1;
                 transform: scale(1) rotate(0deg);
@@ -154,12 +159,15 @@
                 transform: translateY(0) rotate(0deg);
                 opacity: 0;
             }
+
             10% {
                 opacity: 0.9;
             }
+
             90% {
                 opacity: 0.9;
             }
+
             100% {
                 transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
@@ -283,9 +291,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(-50%, -50%) scale(1);
             }
+
             50% {
                 transform: translate(-50%, -50%) scale(1.3);
             }
@@ -323,8 +334,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -339,6 +355,7 @@
                 transform: scale(0.5) rotate(-10deg);
                 opacity: 0;
             }
+
             to {
                 transform: scale(1) rotate(0deg);
                 opacity: 1;
@@ -419,9 +436,11 @@
                 opacity: 0;
                 transform: scale(0.5) rotate(-10deg);
             }
+
             70% {
                 transform: scale(1.1) rotate(5deg);
             }
+
             100% {
                 opacity: 1;
                 transform: scale(1) rotate(0deg);
@@ -472,10 +491,21 @@
         }
 
         @keyframes rainbow {
-            0% { color: #ff6b9d; }
-            33% { color: #ffd89b; }
-            66% { color: #c44569; }
-            100% { color: #ff6b9d; }
+            0% {
+                color: #ff6b9d;
+            }
+
+            33% {
+                color: #ffd89b;
+            }
+
+            66% {
+                color: #c44569;
+            }
+
+            100% {
+                color: #ff6b9d;
+            }
         }
 
         .final-message p {
@@ -526,6 +556,7 @@
                 transform: translate(0, 0) scale(1) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg);
                 opacity: 0;
@@ -586,27 +617,31 @@
         <div class="scene">
             <div class="memory-box" id="box2">
                 <h2>Our Journey Together 🛤️💕</h2>
-                <p style="text-align: center; color: #ff6b9d; margin-bottom: 30px; font-size: 1.2em; font-weight: bold;">
+                <p
+                    style="text-align: center; color: #ff6b9d; margin-bottom: 30px; font-size: 1.2em; font-weight: bold;">
                     Click on each moment to see the memory! 📸✨
                 </p>
                 <div class="timeline">
-                    <div class="timeline-item" data-image="images/1.jpeg">
+                    <div class="timeline-item" data-image="images/first-meet.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>The First Time We Met ✨</h3>
-                            <p>I knew there was something special about you from the very first moment. Your energy was magnetic! 💫</p>
+                            <p>I knew there was something special about you from the very first moment. Your energy was
+                                magnetic! 💫</p>
                             <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item" data-image="images/2.jpeg">
+                    <div class="timeline-item" data-image="images/first-adventure.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>Our First Adventure 🌟</h3>
-                            <p>Every moment with you is an adventure, but that first one showed me how amazing our journey would be! 🎈</p>
+                            <p>Every moment with you is an adventure, but that first one showed me how amazing our
+                                journey would be! 🎈</p>
                             <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item" data-image="images/3.jpeg">
+
+                    <div class="timeline-item" data-video="images/video.MP4">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>When I Realized 💖</h3>
@@ -614,11 +649,13 @@
                             <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
-                    <div class="timeline-item" data-image="images/4.jpeg">
+
+                    <div class="timeline-item" data-image="images/finaly.jpeg">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <h3>Now & Forever 🌈</h3>
-                            <p>Every day with you is a gift, and I can't wait to create infinite more memories together! 🎁</p>
+                            <p>Every day with you is a gift, and I can't wait to create infinite more memories together!
+                                🎁</p>
                             <span class="click-hint">Click to see 👆</span>
                         </div>
                     </div>
@@ -629,19 +666,20 @@
                 <h2>Our Memories 📸💕</h2>
                 <div class="photo-gallery">
                     <div class="photo-item">
-                        <img src="images/1.jpeg" alt="Memory 1">
+                        <img src="images/image-1.jpeg" alt="Memory 1">
                     </div>
                     <div class="photo-item">
-                        <img src="images/2.jpeg" alt="Memory 2">
+                        <img src="images/image-2.jpeg" alt="Memory 2">
                     </div>
                     <div class="photo-item">
-                        <img src="images/3.jpeg" alt="Memory 3">
+                        <img src="images/image-3.jpeg" alt="Memory 3">
                     </div>
                     <div class="photo-item">
-                        <img src="images/4.jpeg" alt="Memory 4">
+                        <img src="images/image-4.jpeg" alt="Memory 4">
                     </div>
                 </div>
-                <p style="text-align: center; color: #ff6b9d; margin-top: 20px; font-style: italic; font-size: 1.1em; font-weight: bold;">
+                <p
+                    style="text-align: center; color: #ff6b9d; margin-top: 20px; font-style: italic; font-size: 1.1em; font-weight: bold;">
                     These represent all the beautiful moments we've shared (and the countless more to come!) ✨💖
                 </p>
                 <button class="interactive-btn" id="fireworkBtn">Celebrate Us! 🎆🎉</button>
@@ -673,7 +711,6 @@
     </div>
 
     <script>
-        // Create stars background
         const starsContainer = document.getElementById('stars');
         for (let i = 0; i < 150; i++) {
             const star = document.createElement('div');
@@ -766,7 +803,8 @@
 
         // Animate firework
         function animateFirework(element, angle, velocity) {
-            let x = 0, y = 0;
+            let x = 0,
+                y = 0;
             let opacity = 1;
 
             const animate = () => {
@@ -829,34 +867,96 @@
         const modalCaption = document.getElementById('modalCaption');
         const modalClose = document.getElementById('modalClose');
 
+        // Replace your timeline item click handler with this updated version:
+
         document.querySelectorAll('.timeline-item').forEach(item => {
             item.addEventListener('click', function() {
                 const imageSrc = this.getAttribute('data-image');
+                const videoSrc = this.getAttribute('data-video');
                 const caption = this.querySelector('h3').textContent;
-                
-                modalImage.src = imageSrc;
+
+                // Clear previous content
+                const modalContent = document.querySelector('.modal-content');
+                const oldMedia = modalContent.querySelector('img, video');
+                if (oldMedia) {
+                    oldMedia.remove();
+                }
+
+                if (videoSrc) {
+                    // Create video element
+                    const video = document.createElement('video');
+                    video.id = 'modalVideo';
+                    video.controls = true;
+                    video.autoplay = true;
+                    video.style.maxWidth = '100%';
+                    video.style.maxHeight = '80vh';
+                    video.style.borderRadius = '20px';
+                    video.style.border = '5px solid white';
+                    video.style.boxShadow = '0 10px 50px rgba(255, 107, 157, 0.5)';
+
+                    const source = document.createElement('source');
+                    source.src = videoSrc;
+                    source.type = 'video/mp4';
+
+                    video.appendChild(source);
+
+                    // Insert video before caption
+                    const modalClose = document.getElementById('modalClose');
+                    modalClose.insertAdjacentElement('afterend', video);
+                } else if (imageSrc) {
+                    // Create image element
+                    const img = document.createElement('img');
+                    img.id = 'modalImage';
+                    img.src = imageSrc;
+                    img.alt = 'Memory';
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '80vh';
+                    img.style.borderRadius = '20px';
+                    img.style.border = '5px solid white';
+                    img.style.boxShadow = '0 10px 50px rgba(255, 107, 157, 0.5)';
+
+                    // Insert image before caption
+                    const modalClose = document.getElementById('modalClose');
+                    modalClose.insertAdjacentElement('afterend', img);
+                }
+
                 modalCaption.textContent = caption;
                 modal.classList.add('active');
-                
+
                 // Add particles effect
                 createParticles(this);
             });
         });
 
-        // Close modal
+        // Update the modal close handler to stop video
         modalClose.addEventListener('click', function() {
+            const video = document.getElementById('modalVideo');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+            }
             modal.classList.remove('active');
         });
 
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
+                const video = document.getElementById('modalVideo');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 modal.classList.remove('active');
             }
         });
 
-        // Close modal with Escape key
+        // Update Escape key handler to stop video
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
+                const video = document.getElementById('modalVideo');
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 modal.classList.remove('active');
             }
         });
